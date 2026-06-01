@@ -62,9 +62,9 @@ body.life .hi-btn:hover{background:var(--l-text);color:var(--l-bg)}
 .hi-cta:hover{opacity:.8}
 .w-hero-open{font-size:11px;color:var(--w-muted);letter-spacing:1px;font-weight:400}
 
-/* ── Hero right: floating mockup frames ── */
-.w-hero-frames{position:relative;z-index:1;opacity:0;animation:fadeIn .8s .6s forwards}
-.frames-svg{width:100%;max-width:400px;filter:drop-shadow(0 20px 48px rgba(26,25,23,0.12))}
+/* ── Hero right: illustration ── */
+.w-hero-frames{position:relative;z-index:1;opacity:0;animation:fadeIn .8s .6s forwards;align-self:center}
+.hero-illustration{width:100%;max-width:460px;display:block;filter:drop-shadow(0 24px 52px rgba(26,25,23,0.16))}
 
 /* ═══ STATS ═══ */
 .w-stats{display:flex;border-bottom:1px solid var(--w-line);overflow-x:auto;background:var(--w-bg)}
@@ -134,7 +134,7 @@ body.life .hi-btn:hover{background:var(--l-text);color:var(--l-bg)}
 .proj-card:hover .proj-img img{transform:scale(1.04)}
 /* visual panel */
 .proj-img{height:240px;overflow:hidden;position:relative;background:var(--w-bg2)}
-.proj-img svg,.proj-img img{width:100%;height:100%;display:block;transition:transform .5s var(--ease)}
+.proj-img img{width:100%;height:100%;display:block;transition:transform .5s var(--ease)}
 .proj-img img{object-fit:cover}
 /* card body */
 .proj-body{padding:32px 32px 36px}
@@ -258,7 +258,7 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
 .globe-w{display:flex;justify-content:center;align-items:center}
 .globe-svg{width:220px;height:220px}
 .travel-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.travel-photo{position:relative;overflow:hidden;aspect-ratio:2/3;height:100%;object-fit:cover;display:block;filter:brightness(.7) saturate(.8);transition:filter .5s var(--ease),transform .5s var(--ease)}
+.travel-photo{position:relative;overflow:hidden;aspect-ratio:4/3;height:100%;object-fit:cover;display:block;filter:brightness(.7) saturate(.8);transition:filter .5s var(--ease),transform .5s var(--ease)}
 .travel-photo:hover img{filter:brightness(.88) saturate(1);transform:scale(1.04)}
 .travel-photo-cap{position:absolute;bottom:0;left:0;right:0;padding:12px 14px;background:linear-gradient(transparent,rgba(0,0,0,.65));font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.72);font-weight:400}
 
@@ -332,7 +332,7 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
 @keyframes gBl{0%,88%,100%{opacity:1}89%{opacity:.6}93%{opacity:1}96%{opacity:.45}98%{opacity:1}}
 
 /* RESPONSIVE */
-@media(max-width:1100px){.w-hero{grid-template-columns:1fr}.w-hero-frames{display:none}}
+@media(max-width:1100px){.w-hero{grid-template-columns:1fr}.w-hero-frames{max-width:460px;width:100%;margin:0 auto}.hero-illustration{max-width:360px}}
 @media(max-width:900px){
   .pil-row,.exp-row,.l-travel-g,.l-music-g,.l-ac-g,.l-game-g{grid-template-columns:1fr}
   .pl,.el{padding-right:0;margin-bottom:14px}
@@ -374,53 +374,20 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
     <div class="w-hero-left">
       <div class="w-hero-label"><span>Design Leadership &middot; UX Management &middot; B2B SaaS &middot; Bangalore</span></div>
       <h1 class="w-h1">Building teams<br>that <span class="hl">design well.</span></h1>
-      <p class="w-hero-desc">10+ years leading design for complex products used by millions. I build design teams from scratch, create the systems that let them scale, and make sure design has a real seat at the table.</p>
+      <p class="w-hero-desc">10+ years of experience leading design for complex products used by millions. I build design teams from scratch, create the systems that let them scale, and make sure design has a real seat at the table.</p>
       <div class="w-hero-actions">
         <button class="hi-cta" onclick="openHello()">Let&rsquo;s talk &rarr;</button>
         <span class="w-hero-open">Open to new positions</span>
       </div>
     </div>
-    <!-- Floating mockup frames -->
+    <!-- Hero illustration -->
     <div class="w-hero-frames">
-      <svg class="frames-svg" viewBox="0 0 400 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Frame 3 — back-most -->
-        <rect x="80" y="10" width="280" height="190" rx="5" fill="#E5E1DA" stroke="rgba(26,25,23,0.08)" stroke-width="1"/>
-        <rect x="96" y="28" width="100" height="10" rx="2" fill="rgba(26,25,23,0.15)"/>
-        <rect x="96" y="46" width="200" height="5" rx="2" fill="rgba(26,25,23,0.07)"/>
-        <rect x="96" y="58" width="160" height="5" rx="2" fill="rgba(26,25,23,0.07)"/>
-        <rect x="96" y="78" width="240" height="60" rx="3" fill="rgba(26,25,23,0.05)"/>
-        <rect x="96" y="150" width="60" height="24" rx="2" fill="rgba(26,25,23,0.2)"/>
-        <rect x="168" y="150" width="60" height="24" rx="2" fill="rgba(26,25,23,0.08)" stroke="rgba(26,25,23,0.15)" stroke-width="1"/>
-        <!-- Frame 2 — middle -->
-        <rect x="30" y="90" width="250" height="175" rx="5" fill="#EDEAE4" stroke="rgba(26,25,23,0.1)" stroke-width="1"/>
-        <rect x="46" y="108" width="90" height="9" rx="2" fill="rgba(26,25,23,0.18)"/>
-        <rect x="46" y="126" width="180" height="4" rx="2" fill="rgba(26,25,23,0.08)"/>
-        <rect x="46" y="138" width="140" height="4" rx="2" fill="rgba(26,25,23,0.06)"/>
-        <rect x="46" y="155" width="50" height="50" rx="3" fill="rgba(26,25,23,0.07)"/>
-        <rect x="108" y="155" width="50" height="50" rx="3" fill="rgba(26,25,23,0.07)"/>
-        <rect x="170" y="155" width="50" height="50" rx="3" fill="rgba(26,25,23,0.07)"/>
-        <rect x="46" y="218" width="70" height="22" rx="2" fill="rgba(26,25,23,0.22)"/>
-        <!-- Frame 1 — front -->
-        <rect x="10" y="175" width="230" height="155" rx="5" fill="#F7F5F1" stroke="rgba(26,25,23,0.14)" stroke-width="1"/>
-        <rect x="26" y="192" width="80" height="8" rx="2" fill="rgba(26,25,23,0.2)"/>
-        <rect x="26" y="208" width="180" height="3.5" rx="2" fill="rgba(26,25,23,0.09)"/>
-        <rect x="26" y="220" width="150" height="3.5" rx="2" fill="rgba(26,25,23,0.07)"/>
-        <!-- bar chart -->
-        <rect x="26" y="240" width="24" height="40" rx="2" fill="rgba(26,25,23,0.12)"/>
-        <rect x="58" y="228" width="24" height="52" rx="2" fill="rgba(26,25,23,0.18)"/>
-        <rect x="90" y="250" width="24" height="30" rx="2" fill="rgba(26,25,23,0.1)"/>
-        <rect x="122" y="236" width="24" height="44" rx="2" fill="rgba(201,168,76,0.55)"/>
-        <rect x="154" y="222" width="24" height="58" rx="2" fill="rgba(26,25,23,0.22)"/>
-        <!-- cursor dot -->
-        <circle cx="178" cy="228" r="5" fill="rgba(201,168,76,0.8)">
-          <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
+      <img class="hero-illustration" src="assets/hero-illustration.svg" alt="Colorful illustration of a person riding a chess knight toward a desk">
     </div>
   </div>
 
   <div class="w-stats">
-    <div class="w-stat"><span class="sv" data-t="10" data-s="+">10+</span><span class="sl">Years Leading</span></div>
+    <div class="w-stat"><span class="sv" data-t="10" data-s="+">10+</span><span class="sl">Years Experience</span></div>
     <div class="w-stat"><span class="sv" data-t="5">5</span><span class="sl">Designers Grown</span></div>
     <div class="w-stat"><span class="sv" data-t="3" data-s="M+">3M+</span><span class="sl">Users Impacted</span></div>
     <div class="w-stat"><span class="sv" data-t="40" data-s="%">40%</span><span class="sl"><span class="sl-up">↑</span>Consistency</span></div>
@@ -451,35 +418,7 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
     <!-- Project 1 — Onboarding -->
     <div class="proj-card" data-proj="onboarding">
       <div class="proj-img">
-        <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="600" height="220" fill="#EEF2FF"/>
-          <!-- flow steps -->
-          <rect x="40" y="76" width="88" height="68" rx="4" fill="white" stroke="rgba(79,70,229,0.15)" stroke-width="1.5"/>
-          <rect x="56" y="92" width="56" height="6" rx="2" fill="rgba(79,70,229,0.3)"/>
-          <rect x="56" y="106" width="40" height="4" rx="2" fill="rgba(79,70,229,0.15)"/>
-          <rect x="56" y="118" width="48" height="4" rx="2" fill="rgba(79,70,229,0.1)"/>
-          <path d="M 128 110 L 152 110" stroke="rgba(79,70,229,0.4)" stroke-width="1.5" stroke-dasharray="4 2"/>
-          <polygon points="152,107 158,110 152,113" fill="rgba(79,70,229,0.4)"/>
-          <rect x="160" y="76" width="88" height="68" rx="4" fill="white" stroke="rgba(79,70,229,0.15)" stroke-width="1.5"/>
-          <rect x="176" y="92" width="56" height="6" rx="2" fill="rgba(79,70,229,0.3)"/>
-          <rect x="176" y="106" width="40" height="4" rx="2" fill="rgba(79,70,229,0.15)"/>
-          <rect x="176" y="118" width="48" height="4" rx="2" fill="rgba(79,70,229,0.1)"/>
-          <path d="M 248 110 L 272 110" stroke="rgba(79,70,229,0.4)" stroke-width="1.5" stroke-dasharray="4 2"/>
-          <polygon points="272,107 278,110 272,113" fill="rgba(79,70,229,0.4)"/>
-          <rect x="280" y="76" width="88" height="68" rx="4" fill="white" stroke="rgba(79,70,229,0.15)" stroke-width="1.5"/>
-          <rect x="296" y="92" width="56" height="6" rx="2" fill="rgba(79,70,229,0.3)"/>
-          <rect x="296" y="106" width="40" height="4" rx="2" fill="rgba(79,70,229,0.15)"/>
-          <rect x="296" y="118" width="48" height="4" rx="2" fill="rgba(79,70,229,0.1)"/>
-          <!-- big callout -->
-          <text x="420" y="95" font-family="Anton,sans-serif" font-size="56" fill="rgba(79,70,229,0.18)" letter-spacing="1">2×</text>
-          <text x="420" y="118" font-family="Inter,sans-serif" font-size="11" fill="rgba(79,70,229,0.4)" font-weight="500">THROUGHPUT</text>
-          <text x="420" y="135" font-family="Inter,sans-serif" font-size="10" fill="rgba(79,70,229,0.25)">40 → 80 clients/mo</text>
-          <!-- progress bar -->
-          <rect x="40" y="162" width="300" height="5" rx="3" fill="rgba(79,70,229,0.1)"/>
-          <rect x="40" y="162" width="180" height="5" rx="3" fill="rgba(79,70,229,0.35)"/>
-          <rect x="40" y="174" width="300" height="5" rx="3" fill="rgba(79,70,229,0.1)"/>
-          <rect x="40" y="174" width="270" height="5" rx="3" fill="rgba(79,70,229,0.5)"/>
-        </svg>
+        <img src="assets/project-onboarding.svg" loading="lazy" alt="Enterprise onboarding workflow preview">
       </div>
       <div class="proj-body">
         <div class="proj-meta"><span class="pco">greytHR &middot; 2022&ndash;23</span><span class="proj-arr">&rarr;</span></div>
@@ -492,37 +431,7 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
     <!-- Project 2 — Payroll -->
     <div class="proj-card" data-proj="payroll">
       <div class="proj-img">
-        <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="600" height="220" fill="#ECFDF5"/>
-          <!-- simplified world map regions as abstract shapes -->
-          <ellipse cx="180" cy="105" rx="80" ry="55" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
-          <ellipse cx="340" cy="90" rx="60" ry="40" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
-          <ellipse cx="460" cy="100" rx="45" ry="35" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
-          <ellipse cx="280" cy="150" rx="35" ry="25" fill="rgba(16,185,129,0.08)" stroke="rgba(16,185,129,0.15)" stroke-width="1"/>
-          <!-- nodes -->
-          <circle cx="155" cy="95" r="5" fill="#10B981"/>
-          <circle cx="155" cy="95" r="10" fill="rgba(16,185,129,0.2)"><animate attributeName="r" values="8;14;8" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.2;0;0.2" dur="3s" repeatCount="indefinite"/></circle>
-          <circle cx="210" cy="118" r="4" fill="#10B981"/>
-          <circle cx="325" cy="82" r="5" fill="#10B981"/>
-          <circle cx="360" cy="100" r="3.5" fill="#10B981"/>
-          <circle cx="450" cy="88" r="4" fill="#10B981"/>
-          <circle cx="478" cy="110" r="3.5" fill="#10B981"/>
-          <circle cx="270" cy="148" r="3.5" fill="#10B981"/>
-          <!-- arcs -->
-          <path d="M 155 95 Q 240 50 325 82" fill="none" stroke="rgba(16,185,129,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
-          <path d="M 325 82 Q 390 70 450 88" fill="none" stroke="rgba(16,185,129,0.3)" stroke-width="1" stroke-dasharray="4 3"/>
-          <path d="M 210 118 Q 240 130 270 148" fill="none" stroke="rgba(16,185,129,0.2)" stroke-width="1" stroke-dasharray="3 3"/>
-          <!-- callout -->
-          <text x="30" y="52" font-family="Anton,sans-serif" font-size="42" fill="rgba(16,185,129,0.2)" letter-spacing="1">25+</text>
-          <text x="30" y="72" font-family="Inter,sans-serif" font-size="11" fill="rgba(16,185,129,0.5)" font-weight="500">COUNTRIES</text>
-          <!-- legend dots -->
-          <circle cx="30" cy="170" r="4" fill="#10B981"/>
-          <text x="40" y="175" font-family="Inter,sans-serif" font-size="10" fill="rgba(16,185,129,0.5)">Weekly cycle</text>
-          <circle cx="130" cy="170" r="4" fill="rgba(16,185,129,0.5)"/>
-          <text x="140" y="175" font-family="Inter,sans-serif" font-size="10" fill="rgba(16,185,129,0.5)">Monthly cycle</text>
-          <circle cx="240" cy="170" r="4" fill="rgba(16,185,129,0.3)"/>
-          <text x="250" y="175" font-family="Inter,sans-serif" font-size="10" fill="rgba(16,185,129,0.5)">Biweekly</text>
-        </svg>
+        <img src="assets/project-payroll.svg" loading="lazy" alt="Global payroll architecture preview">
       </div>
       <div class="proj-body">
         <div class="proj-meta"><span class="pco">greytHR &middot; 2021&ndash;22</span><span class="proj-arr">&rarr;</span></div>
@@ -535,43 +444,7 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
     <!-- Project 3 — Design System -->
     <div class="proj-card" data-proj="system">
       <div class="proj-img">
-        <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="600" height="220" fill="#FAF5FF"/>
-          <!-- atoms row -->
-          <text x="30" y="46" font-family="Inter,sans-serif" font-size="9" fill="rgba(139,92,246,0.4)" font-weight="500" letter-spacing="2">ATOMS</text>
-          <circle cx="38" cy="66" r="10" fill="#8B5CF6" opacity=".85"/>
-          <circle cx="66" cy="66" r="10" fill="#A78BFA" opacity=".8"/>
-          <circle cx="94" cy="66" r="10" fill="#C4B5FD" opacity=".75"/>
-          <circle cx="122" cy="66" r="10" fill="#DDD6FE" opacity=".7"/>
-          <circle cx="150" cy="66" r="10" fill="#EDE9FE" opacity=".65"/>
-          <!-- color swatches -->
-          <rect x="190" y="56" width="20" height="20" rx="3" fill="#1A1917"/>
-          <rect x="218" y="56" width="20" height="20" rx="3" fill="#8C8780"/>
-          <rect x="246" y="56" width="20" height="20" rx="3" fill="#F7F5F1"/>
-          <rect x="274" y="56" width="20" height="20" rx="3" fill="#8B5CF6"/>
-          <rect x="302" y="56" width="20" height="20" rx="3" fill="#10B981"/>
-          <!-- molecules row -->
-          <text x="30" y="106" font-family="Inter,sans-serif" font-size="9" fill="rgba(139,92,246,0.4)" font-weight="500" letter-spacing="2">MOLECULES</text>
-          <rect x="30" y="116" width="80" height="28" rx="4" fill="#8B5CF6"/>
-          <rect x="38" y="124" width="52" height="5" rx="2" fill="rgba(255,255,255,0.7)"/>
-          <rect x="38" y="133" width="36" height="3" rx="2" fill="rgba(255,255,255,0.4)"/>
-          <rect x="122" y="116" width="80" height="28" rx="4" fill="white" stroke="rgba(139,92,246,0.3)" stroke-width="1.5"/>
-          <rect x="130" y="124" width="52" height="5" rx="2" fill="rgba(139,92,246,0.4)"/>
-          <rect x="130" y="133" width="36" height="3" rx="2" fill="rgba(139,92,246,0.2)"/>
-          <rect x="214" y="116" width="130" height="28" rx="4" fill="white" stroke="rgba(26,25,23,0.15)" stroke-width="1"/>
-          <rect x="226" y="124" width="80" height="5" rx="2" fill="rgba(26,25,23,0.15)"/>
-          <rect x="318" y="120" width="16" height="16" rx="2" fill="rgba(139,92,246,0.2)"/>
-          <!-- organisms row -->
-          <text x="30" y="166" font-family="Inter,sans-serif" font-size="9" fill="rgba(139,92,246,0.4)" font-weight="500" letter-spacing="2">ORGANISMS</text>
-          <rect x="30" y="176" width="240" height="32" rx="4" fill="white" stroke="rgba(26,25,23,0.1)" stroke-width="1"/>
-          <rect x="44" y="184" width="60" height="5" rx="2" fill="rgba(26,25,23,0.2)"/>
-          <rect x="44" y="195" width="100" height="4" rx="2" fill="rgba(26,25,23,0.1)"/>
-          <rect x="194" y="182" width="60" height="20" rx="3" fill="#8B5CF6" opacity=".6"/>
-          <!-- component count -->
-          <text x="400" y="100" font-family="Anton,sans-serif" font-size="52" fill="rgba(139,92,246,0.18)" letter-spacing="1">200+</text>
-          <text x="400" y="122" font-family="Inter,sans-serif" font-size="11" fill="rgba(139,92,246,0.4)" font-weight="500">COMPONENTS</text>
-          <text x="400" y="140" font-family="Inter,sans-serif" font-size="10" fill="rgba(139,92,246,0.25)">UI · Motion · Illustration</text>
-        </svg>
+        <img src="assets/project-system.svg" loading="lazy" alt="Atomic design system component preview">
       </div>
       <div class="proj-body">
         <div class="proj-meta"><span class="pco">greytHR &middot; 2021&ndash;23</span><span class="proj-arr">&rarr;</span></div>
@@ -584,32 +457,7 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
     <!-- Project 4 — Billing -->
     <div class="proj-card" data-proj="billing">
       <div class="proj-img">
-        <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="600" height="220" fill="#FFFBEB"/>
-          <!-- dashboard card -->
-          <rect x="30" y="24" width="340" height="175" rx="6" fill="white" stroke="rgba(245,158,11,0.15)" stroke-width="1.5"/>
-          <!-- card header -->
-          <rect x="46" y="40" width="80" height="8" rx="2" fill="rgba(26,25,23,0.2)"/>
-          <rect x="46" y="56" width="140" height="5" rx="2" fill="rgba(26,25,23,0.08)"/>
-          <rect x="46" y="68" width="120" height="5" rx="2" fill="rgba(26,25,23,0.06)"/>
-          <!-- satisfaction meter arc -->
-          <path d="M 80 155 A 60 60 0 0 1 200 155" fill="none" stroke="rgba(245,158,11,0.15)" stroke-width="10" stroke-linecap="round"/>
-          <path d="M 80 155 A 60 60 0 0 1 174 103" fill="none" stroke="#F59E0B" stroke-width="10" stroke-linecap="round"/>
-          <text x="140" y="148" text-anchor="middle" font-family="Anton,sans-serif" font-size="22" fill="#D97706">90%</text>
-          <text x="140" y="163" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(26,25,23,0.35)" font-weight="500">SATISFACTION</text>
-          <!-- before/after bars -->
-          <rect x="240" y="90" width="28" height="80" rx="3" fill="rgba(26,25,23,0.1)"/>
-          <text x="254" y="88" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(26,25,23,0.3)">Before</text>
-          <rect x="240" y="130" width="28" height="40" rx="3" fill="rgba(26,25,23,0.2)"/>
-          <rect x="286" y="90" width="28" height="80" rx="3" fill="rgba(245,158,11,0.15)"/>
-          <text x="300" y="88" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(245,158,11,0.7)">After</text>
-          <rect x="286" y="95" width="28" height="75" rx="3" fill="#F59E0B" opacity=".55"/>
-          <!-- callouts -->
-          <text x="400" y="80" font-family="Anton,sans-serif" font-size="36" fill="rgba(245,158,11,0.25)">+30%</text>
-          <text x="400" y="98" font-family="Inter,sans-serif" font-size="10" fill="rgba(245,158,11,0.45)" font-weight="500">SATISFACTION UP</text>
-          <text x="400" y="128" font-family="Anton,sans-serif" font-size="36" fill="rgba(245,158,11,0.25)">−25%</text>
-          <text x="400" y="146" font-family="Inter,sans-serif" font-size="10" fill="rgba(245,158,11,0.45)" font-weight="500">SUPPORT TICKETS</text>
-        </svg>
+        <img src="assets/project-billing.svg" loading="lazy" alt="Billing dashboard redesign preview">
       </div>
       <div class="proj-body">
         <div class="proj-meta"><span class="pco">Replicon &middot; 2019&ndash;20</span><span class="proj-arr">&rarr;</span></div>
@@ -856,25 +704,25 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
 
 <script>
 const PD={
-  onboarding:{name:'Client Onboarding Redesign',co:'greytHR',year:'2022–23',tags:['Leadership','Research','DesignOps'],imgSeed:'office-workflow',
+  onboarding:{name:'Client Onboarding Redesign',co:'greytHR',year:'2022–23',tags:['Leadership','Research','DesignOps'],img:'assets/project-onboarding.svg',
     lead:'I ran a 3-person team through this over 8 weeks. The key call was stopping the team from patching the existing flow and starting from the user\'s first moment of contact. That meant making the case upward — this would take longer — and convincing engineering to rebuild parts of the portal. I held the line on the research findings when pressure came to ship faster. That discipline is what got us to 2×.',
     problem:'The implementation team was capped at 40 enterprise clients per month. The onboarding process had grown organically, was fragmented and manual, and each new client felt like starting from scratch.',
     steps:['3 weeks shadow sessions with the implementation team','Full journey mapping — 7 critical bottlenecks identified','Redesigned the client portal for self-serve onboarding','Rebuilt internal tooling to cut repetitive manual work','Research-gated scope against business pressure to rush'],
     outcome:'Throughput doubled from 40 to 80 enterprise clients per month. No headcount added.',
     metrics:[{v:'2×',l:'Throughput'},{v:'0',l:'New Hires'},{v:'80',l:'Clients/Month'}]},
-  payroll:{name:'Global Payroll UX',co:'greytHR',year:'2021–22',tags:['Cross-functional','Product Design','Research'],imgSeed:'world-map',
+  payroll:{name:'Global Payroll UX',co:'greytHR',year:'2021–22',tags:['Cross-functional','Product Design','Research'],img:'assets/project-payroll.svg',
     lead:'Cross-functional across product, engineering, legal, and market teams in 4 regions. The hardest call was choosing a flexible-but-simple architecture when pressure was to build different flows per market. I made that call, defended it against pushback, and the single-system approach is what made the international rollout actually work.',
     problem:'greytHR was built for Indian payroll. International expansion meant different currencies, tax rules, pay frequencies, and compliance requirements. The existing UX couldn\'t stretch without breaking.',
     steps:['Regulatory and user research across 25+ target countries','Interviews with international payroll managers and HR leads','Flexible pay cycle architecture: weekly, biweekly, monthly — one system','Country-specific configuration without exploding complexity','Single design language maintained across all markets'],
     outcome:'greytHR launched in 25+ countries. The payroll UX supports multiple pay cycles and local compliance without a separate product per market.',
     metrics:[{v:'25+',l:'Countries'},{v:'3',l:'Pay Cycles'},{v:'1',l:'Unified System'}]},
-  system:{name:'Atomic Design System',co:'greytHR',year:'2021–23',tags:['DesignOps','Systems','Leadership'],imgSeed:'design-components',
+  system:{name:'Atomic Design System',co:'greytHR',year:'2021–23',tags:['DesignOps','Systems','Leadership'],img:'assets/project-system.svg',
     lead:'I made the case for this to leadership. The pitch was consistency and speed; the real case was quality and team morale. Getting sign-off was half the battle. Adoption was harder. I set up weekly design crits, ran pair sessions with teams building on the system, and made it the path of least resistance.',
     problem:'5 product teams were each building their own components. The platform had hundreds of slightly different buttons, form fields, and patterns. Inconsistency was measurable and getting worse.',
     steps:['Full UI audit across all product areas — baseline inconsistency measured','Prioritised components by usage and inconsistency severity','Built atomic component library in Figma from first principles','Extended system to motion and illustration','Weekly crits to drive adoption across 5 teams'],
     outcome:'Design inconsistencies dropped 40% platform-wide. New designers onboard faster. Covers UI, motion, and illustration for 3M+ users.',
     metrics:[{v:'40%',l:'Fewer Issues'},{v:'3M+',l:'Users'},{v:'200+',l:'Components'}]},
-  billing:{name:'Billing Experience Overhaul',co:'Replicon via Think Design',year:'2019–20',tags:['UX Design','Research','Stakeholder'],imgSeed:'dashboard-ui',
+  billing:{name:'Billing Experience Overhaul',co:'Replicon via Think Design',year:'2019–20',tags:['UX Design','Research','Stakeholder'],img:'assets/project-billing.svg',
     lead:'First project where I had to balance user advocacy with client relationship pressure. The client wanted fast patches; research showed the whole flow needed rethinking. I presented findings directly to senior stakeholders — not through a PM buffer — and made the ROI case for the larger scope. They agreed.',
     problem:'Users couldn\'t understand invoices, struggled to manage subscriptions, and called support for things they should handle themselves.',
     steps:['Heuristic evaluation — 12 critical issues mapped','User interviews across 8 customers on different subscription types','Support ticket analysis — most common pain points identified','Redesigned billing dashboard, invoice view and subscription management','Direct stakeholder presentation to make the case for full-scope work'],
@@ -885,7 +733,7 @@ const PD={
 function openDrawer(k){
   const d=PD[k];if(!d)return;
   document.getElementById('pdC').innerHTML=`
-    <img class="pd-hero-img" src="https://picsum.photos/seed/${d.imgSeed}/540/180" loading="lazy" alt="${d.name}">
+    <img class="pd-hero-img" src="${d.img}" loading="lazy" alt="${d.name}">
     <div class="pd-nm">${d.name}</div><div class="pd-co">${d.co} &middot; ${d.year}</div>
     <div class="pd-tags">${d.tags.map(t=>`<span class="pd-tag">${t}</span>`).join('')}</div>
     <div class="pd-metrics">${d.metrics.map(m=>`<div class="pd-metric"><span class="pd-mv">${m.v}</span><span class="pd-ml">${m.l}</span></div>`).join('')}</div>
