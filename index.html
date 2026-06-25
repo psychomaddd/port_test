@@ -373,6 +373,34 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
   .travel-photo{width:300px;height:380px}
   .art-gallery{grid-template-columns:1fr 1fr}
 }
+
+/* ═══ MUSIC PLAYER (floating, persists across Work/Life, draggable) ═══ */
+.mp-wrap{position:fixed;right:20px;bottom:20px;z-index:520;display:flex;align-items:center;gap:0;background:#141414;border:1px solid rgba(255,255,255,0.08);border-radius:30px;padding:7px;box-shadow:0 14px 36px rgba(0,0,0,0.3);font-family:'Inter',sans-serif;-webkit-tap-highlight-color:transparent;opacity:.5;transition:opacity .3s ease,gap .3s ease,padding .3s ease,box-shadow .3s ease}
+.mp-wrap:hover,.mp-wrap.open,.mp-wrap.dragging{opacity:1}
+.mp-wrap.dragging{transition:none;box-shadow:0 18px 44px rgba(0,0,0,0.42)}
+.mp-wrap.open{gap:12px;padding:7px 14px 7px 7px}
+.mp-disc-wrap{flex-shrink:0;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:grab;touch-action:none}
+.mp-disc-wrap:active{cursor:grabbing}
+.mp-disc{width:36px;height:36px;display:block;animation:mpSpin 6s linear infinite;animation-play-state:paused;pointer-events:none}
+.mp-wrap.playing .mp-disc{animation-play-state:running}
+@keyframes mpSpin{to{transform:rotate(360deg)}}
+.mp-info{display:flex;flex-direction:column;flex-shrink:0;width:0;opacity:0;overflow:hidden;white-space:nowrap;transition:width .32s ease,opacity .2s ease}
+.mp-wrap.open .mp-info{width:108px;opacity:1}
+.mp-track{font-size:12px;font-weight:600;color:#EEECEA;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35}
+.mp-artist{font-size:10px;color:rgba(238,236,234,0.42);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35}
+.mp-ctrls{display:flex;align-items:center;flex-shrink:0;gap:4px;width:0;opacity:0;overflow:hidden;transition:width .32s ease,opacity .2s ease}
+.mp-wrap.open .mp-ctrls{width:94px;opacity:1}
+.mp-btn{width:27px;height:27px;border-radius:50%;border:none;background:transparent;color:rgba(238,236,234,0.4);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,color .2s,transform .15s;flex-shrink:0;padding:0}
+.mp-btn:hover{background:rgba(255,255,255,0.14);color:#EEECEA}
+.mp-btn:active{transform:scale(.9)}
+.mp-play-btn{background:#E8FF5A;color:#0C0C0C;width:31px;height:31px}
+.mp-play-btn:hover{background:#d9f03e}
+@media(max-width:640px){
+  .mp-wrap{right:14px;bottom:14px}
+  .mp-wrap.open{padding:6px 10px 6px 6px;gap:8px}
+  .mp-wrap.open .mp-info{width:90px}
+  .mp-wrap.open .mp-ctrls{width:90px}
+}
 </style>
 </head>
 <body>
@@ -711,6 +739,37 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
   </div>
 </div>
 
+<!-- ═══ MUSIC PLAYER ═══ -->
+<div class="mp-wrap" id="mpWrap">
+  <div class="mp-disc-wrap">
+    <svg class="mp-disc" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="19" fill="#1A1917"/>
+      <circle cx="20" cy="20" r="19" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <circle cx="20" cy="20" r="14.5" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="20" cy="20" r="10" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <circle cx="20" cy="20" r="6" fill="#E8FF5A"/>
+      <circle cx="20" cy="20" r="1.3" fill="#1A1917"/>
+    </svg>
+  </div>
+  <div class="mp-info">
+    <span class="mp-track" id="mpTrackName">Bread</span>
+    <span class="mp-artist" id="mpTrackArtist">Lukrembo</span>
+  </div>
+  <div class="mp-ctrls">
+    <button class="mp-btn" id="mpPrevBtn" aria-label="Previous track" title="Previous track">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+    </button>
+    <button class="mp-btn mp-play-btn" id="mpPlayBtn" aria-label="Play" title="Play">
+      <svg id="mpIconPlay" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      <svg id="mpIconPause" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+    </button>
+    <button class="mp-btn" id="mpNextBtn" aria-label="Next track" title="Next track">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6h2v12h-2zM14.5 12 6 6v12z"/></svg>
+    </button>
+  </div>
+</div>
+<audio id="mpAudio" preload="none"></audio>
+
 <script>
 const ICONS={
   shadow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>',
@@ -863,6 +922,115 @@ function gd(){cx2.clearRect(0,0,GW,GH);cx2.strokeStyle='rgba(0,255,65,0.035)';cx
 function eg(w){gR=false;gS=false;if(w){smsg('YOU WIN!',`SCORE: ${String(sc).padStart(4,'0')}\n\nSPACE TO PLAY AGAIN\n\n...now hire Arpit?`)}else{smsg('GAME OVER',`SCORE: ${String(sc).padStart(4,'0')}\n\nSPACE TO TRY AGAIN\n\n"Failure = iteration"\n– every UX lead ever`)}}
 let ac=null;function getAC(){if(!ac)ac=new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();return ac}
 function bp(f,tp,d,v=.08){try{const a=getAC(),o=a.createOscillator(),g=a.createGain();o.connect(g);g.connect(a.destination);o.type=tp;o.frequency.setValueAtTime(f,a.currentTime);g.gain.setValueAtTime(v,a.currentTime);g.gain.exponentialRampToValueAtTime(.001,a.currentTime+d);o.start();o.stop(a.currentTime+d)}catch(e){}}
+
+/* ═══ MUSIC PLAYER ═══ */
+const MP_TRACKS=[
+  {src:'assets/music/bread-lukrembo.mp3',name:'Bread',artist:'Lukrembo'},
+  {src:'assets/music/lavender-massobeats.mp3',name:'Lavender',artist:'Massobeats'},
+  {src:'assets/music/rose-water-massobeats.mp3',name:'Rose Water',artist:'Massobeats'},
+  {src:'assets/music/space-ambient.mp3',name:'Space Ambient',artist:'Relaxation Ambient'}
+];
+let mpIdx=0,mpPlaying=false;
+const mpAudio=document.getElementById('mpAudio');
+const mpWrap=document.getElementById('mpWrap');
+const mpTrackName=document.getElementById('mpTrackName');
+const mpTrackArtist=document.getElementById('mpTrackArtist');
+const mpPlayBtn=document.getElementById('mpPlayBtn');
+const mpIconPlay=document.getElementById('mpIconPlay');
+const mpIconPause=document.getElementById('mpIconPause');
+function mpSetPlaying(p){
+  mpPlaying=p;
+  mpWrap.classList.toggle('playing',p);
+  mpIconPlay.style.display=p?'none':'block';
+  mpIconPause.style.display=p?'block':'none';
+  mpPlayBtn.setAttribute('aria-label',p?'Pause':'Play');
+  mpPlayBtn.setAttribute('title',p?'Pause':'Play');
+}
+function mpSetTrack(i,autoplay){
+  mpIdx=(i+MP_TRACKS.length)%MP_TRACKS.length;
+  const t=MP_TRACKS[mpIdx];
+  mpTrackName.textContent=t.name;
+  mpTrackArtist.textContent=t.artist;
+  mpAudio.src=t.src;
+  if(autoplay)mpAudio.play().catch(()=>{});
+}
+function mpNext(){mpSetTrack(mpIdx+1,mpPlaying)}
+function mpPrev(){mpSetTrack(mpIdx-1,mpPlaying)}
+function mpTogglePlay(){
+  if(!mpAudio.src){mpSetTrack(mpIdx,true);return}
+  if(mpAudio.paused)mpAudio.play().catch(()=>{});
+  else mpAudio.pause();
+}
+mpTrackName.textContent=MP_TRACKS[0].name;
+mpTrackArtist.textContent=MP_TRACKS[0].artist;
+mpAudio.addEventListener('play',()=>mpSetPlaying(true));
+mpAudio.addEventListener('pause',()=>mpSetPlaying(false));
+mpAudio.addEventListener('ended',()=>mpSetTrack(mpIdx+1,true));
+mpPlayBtn.addEventListener('click',mpTogglePlay);
+document.getElementById('mpNextBtn').addEventListener('click',mpNext);
+document.getElementById('mpPrevBtn').addEventListener('click',mpPrev);
+
+/* drag to reposition + click to open/close (disc = handle) */
+let mpDragging=false,mpMoved=false,mpStartX=0,mpStartY=0,mpStartLeft=0,mpStartTop=0;
+const mpHandle=mpWrap.querySelector('.mp-disc-wrap');
+function mpClampToViewport(){
+  const rect=mpWrap.getBoundingClientRect();
+  const m=4;
+  let nl=rect.left,nt=rect.top,changed=false;
+  if(rect.right>window.innerWidth-m){nl=window.innerWidth-m-rect.width;changed=true}
+  if(nl<m){nl=m;changed=true}
+  if(rect.bottom>window.innerHeight-m){nt=window.innerHeight-m-rect.height;changed=true}
+  if(nt<m){nt=m;changed=true}
+  if(changed){
+    mpWrap.style.left=nl+'px';
+    mpWrap.style.top=nt+'px';
+    mpWrap.style.right='auto';
+    mpWrap.style.bottom='auto';
+  }
+}
+function mpPointerDown(e){
+  mpDragging=true;mpMoved=false;
+  const rect=mpWrap.getBoundingClientRect();
+  mpStartLeft=rect.left;mpStartTop=rect.top;
+  mpStartX=e.clientX;mpStartY=e.clientY;
+  try{mpHandle.setPointerCapture(e.pointerId)}catch(err){}
+}
+function mpPointerMove(e){
+  if(!mpDragging)return;
+  const dx=e.clientX-mpStartX,dy=e.clientY-mpStartY;
+  if(!mpMoved){
+    if(Math.abs(dx)<=4&&Math.abs(dy)<=4)return;
+    mpMoved=true;
+    mpWrap.style.left=mpStartLeft+'px';
+    mpWrap.style.top=mpStartTop+'px';
+    mpWrap.style.right='auto';
+    mpWrap.style.bottom='auto';
+    mpWrap.classList.add('dragging');
+  }
+  const maxL=window.innerWidth-mpWrap.offsetWidth-4;
+  const maxT=window.innerHeight-mpWrap.offsetHeight-4;
+  mpWrap.style.left=Math.max(4,Math.min(mpStartLeft+dx,maxL))+'px';
+  mpWrap.style.top=Math.max(4,Math.min(mpStartTop+dy,maxT))+'px';
+}
+function mpPointerUp(){
+  if(!mpDragging)return;
+  mpDragging=false;
+  if(mpMoved){
+    mpWrap.classList.remove('dragging');
+    mpClampToViewport();
+  }else{
+    mpWrap.classList.toggle('open');
+    setTimeout(mpClampToViewport,340);
+  }
+}
+mpHandle.addEventListener('pointerdown',mpPointerDown);
+mpHandle.addEventListener('pointermove',mpPointerMove);
+mpHandle.addEventListener('pointerup',mpPointerUp);
+mpHandle.addEventListener('pointercancel',mpPointerUp);
+document.addEventListener('pointerdown',e=>{
+  if(mpWrap.classList.contains('open')&&!mpWrap.contains(e.target))mpWrap.classList.remove('open');
+});
+window.addEventListener('resize',()=>{if(mpWrap.classList.contains('open'))mpClampToViewport()});
 </script>
 </body>
 </html>
