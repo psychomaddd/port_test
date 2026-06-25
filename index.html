@@ -172,6 +172,20 @@ body.life .hi-btn:hover{background:var(--l-text);color:var(--l-bg)}
 .pd-list li{font-size:13px;padding:9px 0;border-bottom:1px solid var(--w-line);color:var(--w-muted);line-height:1.7;display:flex;gap:10px;font-weight:300}
 .pd-list li::before{content:'→';color:var(--w-muted);flex-shrink:0}
 .pd-list li:last-child{border-bottom:none}
+.pd-facts{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--w-line)}
+.pd-fact{flex:1;min-width:130px}
+.pd-fl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--w-muted);margin-bottom:5px;display:block;font-weight:500}
+.pd-fv{font-size:13px;color:var(--w-ink);font-weight:500;line-height:1.5}
+.pd-decision{border-left:3px solid var(--w-ink);padding:2px 0 2px 20px;margin-bottom:28px}
+.pd-decision-l{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w-muted);margin-bottom:8px;display:block;font-weight:500}
+.pd-decision-t{font-size:15px;color:var(--w-ink);line-height:1.7;font-style:italic;font-weight:400}
+.pd-figma{display:inline-flex;align-items:center;gap:7px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--w-ink);border:1px solid var(--w-line2);padding:9px 16px;margin-bottom:28px;text-decoration:none;transition:all var(--tf)}
+.pd-figma:hover{background:var(--w-ink);color:var(--w-bg)}
+.pd-process{margin-bottom:24px}
+.pd-list.has-icons li{display:flex;align-items:flex-start;gap:14px;padding-left:0}
+.pd-list.has-icons li::before{content:none}
+.pd-list-ic{flex-shrink:0;width:30px;height:30px;border:1px solid var(--w-line2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--w-ink);margin-top:2px}
+.pd-list-ic svg{width:15px;height:15px}
 
 /* ═══ FOOTER ═══ */
 footer{padding:72px 52px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:36px;border-top:1px solid var(--w-line);transition:border-color var(--t)}
@@ -604,11 +618,11 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
       </div>
       <!-- Photo gallery grid -->
       <div class="art-gallery rev" style="transition-delay:.25s">
-        <div class="art-thumb"><img src="https://github.com/psychomaddd/port_test/blob/b3241a51a72a407fd02552c37bc8403e36d00133/1_full.jpg" loading="lazy" alt="1_full"></div>
-        <div class="art-thumb"><img src="https://picsum.photos/seed/studio2/400/400" loading="lazy" alt="Art 2"></div>
-        <div class="art-thumb"><img src="https://picsum.photos/seed/texture3/400/400" loading="lazy" alt="Art 3"></div>
-        <div class="art-thumb"><img src="https://picsum.photos/seed/paper4/400/400" loading="lazy" alt="Art 4"></div>
-        <div class="art-thumb"><img src="https://picsum.photos/seed/craft5/400/400" loading="lazy" alt="Art 5"></div>
+        <div class="art-thumb"><img src="assets/Frame%201.png" loading="lazy" alt="Art 1"></div>
+        <div class="art-thumb"><img src="assets/Frame%202.png" loading="lazy" alt="Art 2"></div>
+        <div class="art-thumb"><img src="assets/Frame%203.png" loading="lazy" alt="Art 3"></div>
+        <div class="art-thumb"><img src="assets/Frame%204.png" loading="lazy" alt="Art 4"></div>
+        <div class="art-thumb"><img src="assets/Frame%205.png" loading="lazy" alt="Art 5"></div>
       </div>
     </div>
   </div>
@@ -698,30 +712,64 @@ body.life .hi-cv{background:var(--l-accent);color:#0C0C0C}
 </div>
 
 <script>
+const ICONS={
+  shadow:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>',
+  map:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.3"/></svg>',
+  portal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M3 9h18"/><path d="M8.5 14.5l2 2 4-4.5"/></svg>',
+  tool:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 7.5a4.5 4.5 0 0 1-6.4 4.1L9.5 16.7a2 2 0 1 1-2.8-2.8l5.1-5.1A4.5 4.5 0 0 1 18 3.3l-3 3 1.7 1.7 3-3c.2.4.3.9.3 1.5Z"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6l7-3Z"/><path d="M9 12.5l2 2 4-4.5"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.8-4.8"/></svg>',
+  persona:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6"/></svg>',
+  layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 3 8l9 5 9-5-9-5Z"/><path d="M3 12l9 5 9-5M3 16l9 5 9-5"/></svg>',
+  compare:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="9" height="14" rx="1.5"/><rect x="13" y="5" width="9" height="14" rx="1.5"/><path d="M6.5 9.5v5M17.5 9.5v5"/></svg>'
+};
 const PD={
   onboarding:{name:'Client Onboarding Redesign',co:'greytHR',year:'2022–23',tags:['Leadership','Research','DesignOps'],img:'assets/project-onboarding.svg',
+    figma:'https://figma.com/design/X1RiVnZRw7xPMXNTYyAWrK/Smart-Onboarding--SOB-?node-id=790-49473&t=u7SZi2KWC9sz2n7t-1',
+    role:'Design Lead',duration:'8 weeks',team:'3-person team (research + design)',
     lead:'I ran a 3-person team through this over 8 weeks. The key call was stopping the team from patching the existing flow and starting from the user\'s first moment of contact. That meant making the case upward — this would take longer — and convincing engineering to rebuild parts of the portal. I held the line on the research findings when pressure came to ship faster. That discipline is what got us to 2×.',
+    decision:'"Stop patching the existing flow. Start from the user\'s first moment of contact." — the call that meant a slower start, but an actual fix instead of another patch.',
     problem:'The implementation team was capped at 40 enterprise clients per month. The onboarding process had grown organically, was fragmented and manual, and each new client felt like starting from scratch.',
+    constraints:'Engineering capacity was tight and wary of a rebuild — that needed selling on scope. Leadership wanted speed; the early research said otherwise. I had to make the case for both at the same time.',
     steps:['3 weeks shadow sessions with the implementation team','Full journey mapping — 7 critical bottlenecks identified','Redesigned the client portal for self-serve onboarding','Rebuilt internal tooling to cut repetitive manual work','Research-gated scope against business pressure to rush'],
+    stepIcons:['shadow','map','portal','tool','shield'],
+    processViz:'<svg viewBox="0 0 600 70" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block"><line x1="40" y1="20" x2="560" y2="20" stroke="rgba(26,25,23,0.18)" stroke-width="1.5"/><g font-family="Inter,sans-serif"><circle cx="40" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="40" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">1</text><text x="40" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">SHADOW</text><circle cx="170" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="170" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">2</text><text x="170" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">MAP</text><circle cx="300" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="300" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">3</text><text x="300" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">REDESIGN</text><circle cx="430" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="430" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">4</text><text x="430" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">REBUILD</text><circle cx="560" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="560" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">5</text><text x="560" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">VALIDATE</text></g></svg>',
     outcome:'Throughput doubled from 40 to 80 enterprise clients per month. No headcount added.',
+    reflection:'I\'d bring engineering into the shadow sessions earlier next time. They came around once they saw the bottlenecks firsthand — getting them there sooner would have shortened the whole timeline.',
     metrics:[{v:'2×',l:'Throughput'},{v:'0',l:'New Hires'},{v:'80',l:'Clients/Month'}]},
   payroll:{name:'Global Payroll UX',co:'greytHR',year:'2021–22',tags:['Cross-functional','Product Design','Research'],img:'assets/project-payroll.svg',
+    figma:'https://www.figma.com/design/LJxrXgNJNCu7PiTbLIO3nb/Payroll--Dev-team?node-id=1013-4173&p=f&t=stEED13omsoG8HgX-0',
+    role:'Lead Product Designer',duration:'~12 months (2021–22)',team:'Cross-functional — product, engineering, legal, market leads across 4 regions',
     lead:'Cross-functional across product, engineering, legal, and market teams in 4 regions. The hardest call was choosing a flexible-but-simple architecture when pressure was to build different flows per market. I made that call, defended it against pushback, and the single-system approach is what made the international rollout actually work.',
+    decision:'"One flexible system, not five different ones." — choosing a single configurable architecture over market-by-market builds, then defending it when regional teams pushed back.',
     problem:'greytHR was built for Indian payroll. International expansion meant different currencies, tax rules, pay frequencies, and compliance requirements. The existing UX couldn\'t stretch without breaking.',
-    steps:['Regulatory and user research across 25+ target countries','Interviews with international payroll managers and HR leads','Flexible pay cycle architecture: weekly, biweekly, monthly — one system','Country-specific configuration without exploding complexity','Single design language maintained across all markets'],
+    constraints:'Every region wanted a flow tailored to its own regulation, and the easy path was to just build market-specific versions rather than solve it once. Currencies, tax rules and pay frequencies all varied widely.',
+    steps:['Regulatory and user research across 25+ target countries','Interviews with international payroll managers and HR leads','Built role-based personas — HR Admin, Regional Payroll Manager, Compliance Lead — to keep cross-functional teams aligned on real workflows, not assumptions','Mapped every payroll scenario into 4 core flows: Regular Run, Ad-Hoc, Correction, and Post-Payroll actions, so the "one system" claim was actually scoped, not just stated','Flexible pay cycle architecture: weekly, biweekly, monthly — one system','Country-specific configuration without exploding complexity','Validated the architecture with side-by-side prototype comparisons and usability sessions with pilot-market payroll managers before committing','Single design language maintained across all markets'],
+    stepIcons:['search','search','persona','map','layers','layers','compare','shield'],
+    processViz:'<svg viewBox="0 0 600 70" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block"><line x1="40" y1="20" x2="560" y2="20" stroke="rgba(26,25,23,0.18)" stroke-width="1.5"/><g font-family="Inter,sans-serif"><circle cx="40" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="40" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">1</text><text x="40" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">DISCOVER</text><circle cx="144" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="144" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">2</text><text x="144" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">DEFINE</text><circle cx="248" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="248" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">3</text><text x="248" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">MAP</text><circle cx="352" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="352" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">4</text><text x="352" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">DESIGN</text><circle cx="456" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="456" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">5</text><text x="456" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">VALIDATE</text><circle cx="560" cy="20" r="15" fill="#F7F5F1" stroke="#1A1917" stroke-width="1.5"/><text x="560" y="25" text-anchor="middle" font-size="11" fill="#1A1917" font-weight="600">6</text><text x="560" y="54" text-anchor="middle" font-size="9" letter-spacing="1" fill="#8C8780">DELIVER</text></g></svg>',
     outcome:'greytHR launched in 25+ countries. The payroll UX supports multiple pay cycles and local compliance without a separate product per market.',
+    reflection:'The design held up — the politics took longer than the design did. Next time I\'d loop regional stakeholders into the architecture decision itself, not just the rollout.',
     metrics:[{v:'25+',l:'Countries'},{v:'3',l:'Pay Cycles'},{v:'1',l:'Unified System'}]},
   system:{name:'Atomic Design System',co:'greytHR',year:'2021–23',tags:['DesignOps','Systems','Leadership'],img:'assets/project-system.svg',
+    figma:'https://www.figma.com/design/mZ1nRmu20Gkw6xvnHwhMoS/Web-Style-Guide-16.21.28?node-id=0-1&p=f&t=OLkLBEwtIqw5iFE1-0',
+    role:'Design Systems Lead',duration:'2 years (2021–23)',team:'Owned centrally, adopted across 5 product teams',
     lead:'I made the case for this to leadership. The pitch was consistency and speed; the real case was quality and team morale. Getting sign-off was half the battle. Adoption was harder. I set up weekly design crits, ran pair sessions with teams building on the system, and made it the path of least resistance.',
+    decision:'"Make the system the path of least resistance." — investing in weekly crits and pair sessions with teams instead of just publishing components and hoping for adoption.',
     problem:'5 product teams were each building their own components. The platform had hundreds of slightly different buttons, form fields, and patterns. Inconsistency was measurable and getting worse.',
+    constraints:'Sign-off from leadership was the easy part — getting 5 teams with their own habits and deadlines to actually adopt a shared system was the real challenge. A library nobody uses doesn\'t fix inconsistency.',
     steps:['Full UI audit across all product areas — baseline inconsistency measured','Prioritised components by usage and inconsistency severity','Built atomic component library in Figma from first principles','Extended system to motion and illustration','Weekly crits to drive adoption across 5 teams'],
     outcome:'Design inconsistencies dropped 40% platform-wide. New designers onboard faster. Covers UI, motion, and illustration for 3M+ users.',
+    reflection:'I underestimated how long adoption takes versus build. If I ran this again, the crits and pairing sessions would start in week one, not after the first components shipped.',
     metrics:[{v:'40%',l:'Fewer Issues'},{v:'3M+',l:'Users'},{v:'200+',l:'Components'}]},
   billing:{name:'Billing Experience Overhaul',co:'Replicon via Think Design',year:'2019–20',tags:['UX Design','Research','Stakeholder'],img:'assets/project-billing.svg',
+    role:'UX Designer (Think Design, for client Replicon)',duration:'~1 year (2019–20)',team:'Agency-side UX, presenting directly to client stakeholders',
     lead:'First project where I had to balance user advocacy with client relationship pressure. The client wanted fast patches; research showed the whole flow needed rethinking. I presented findings directly to senior stakeholders — not through a PM buffer — and made the ROI case for the larger scope. They agreed.',
+    decision:'"Present the findings directly to senior stakeholders, not through a PM buffer." — taking the research straight to decision-makers to make the case for the larger scope myself.',
     problem:'Users couldn\'t understand invoices, struggled to manage subscriptions, and called support for things they should handle themselves.',
+    constraints:'The client wanted quick patches to stop support calls. Research pointed to a deeper problem, which meant asking for more scope and budget on a project that was meant to stay small.',
     steps:['Heuristic evaluation — 12 critical issues mapped','User interviews across 8 customers on different subscription types','Support ticket analysis — most common pain points identified','Redesigned billing dashboard, invoice view and subscription management','Direct stakeholder presentation to make the case for full-scope work'],
     outcome:'Billing satisfaction improved 30%. Support tickets on billing dropped 25%. The client chose the larger scope.',
+    reflection:'This was the first time I had to sell scope, not just design. The lesson that stuck: the data does the persuading on its own once it\'s in front of the right person — my job was just getting it there.',
     metrics:[{v:'+30%',l:'Satisfaction'},{v:'−25%',l:'Support Tickets'},{v:'12',l:'Issues Fixed'}]}
 };
 
@@ -731,11 +779,20 @@ function openDrawer(k){
     <img class="pd-hero-img" src="${d.img}" loading="lazy" alt="${d.name}">
     <div class="pd-nm">${d.name}</div><div class="pd-co">${d.co} &middot; ${d.year}</div>
     <div class="pd-tags">${d.tags.map(t=>`<span class="pd-tag">${t}</span>`).join('')}</div>
+    ${d.figma?`<a class="pd-figma" href="${d.figma}" target="_blank" rel="noopener">View in Figma <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>`:''}
+    <div class="pd-facts">
+      <div class="pd-fact"><span class="pd-fl">Role</span><span class="pd-fv">${d.role}</span></div>
+      <div class="pd-fact"><span class="pd-fl">Duration</span><span class="pd-fv">${d.duration}</span></div>
+      <div class="pd-fact"><span class="pd-fl">Team</span><span class="pd-fv">${d.team}</span></div>
+    </div>
     <div class="pd-metrics">${d.metrics.map(m=>`<div class="pd-metric"><span class="pd-mv">${m.v}</span><span class="pd-ml">${m.l}</span></div>`).join('')}</div>
     <div class="pd-lead"><span class="pd-lead-l">My role as leader</span><p class="pd-lead-t">${d.lead}</p></div>
+    <div class="pd-decision"><span class="pd-decision-l">Key Decision</span><p class="pd-decision-t">${d.decision}</p></div>
     <div class="pd-sec"><span class="pd-sl">The Problem</span><p class="pd-txt">${d.problem}</p></div>
-    <div class="pd-sec"><span class="pd-sl">What We Did</span><ul class="pd-list">${d.steps.map(s=>`<li>${s}</li>`).join('')}</ul></div>
-    <div class="pd-sec"><span class="pd-sl">Outcome</span><p class="pd-txt">${d.outcome}</p></div>`;
+    <div class="pd-sec"><span class="pd-sl">Constraints</span><p class="pd-txt">${d.constraints}</p></div>
+    <div class="pd-sec"><span class="pd-sl">What We Did</span>${d.processViz?`<div class="pd-process">${d.processViz}</div>`:''}<ul class="pd-list${d.stepIcons?' has-icons':''}">${d.steps.map((s,i)=>d.stepIcons?`<li><span class="pd-list-ic">${ICONS[d.stepIcons[i]]}</span><span>${s}</span></li>`:`<li>${s}</li>`).join('')}</ul></div>
+    <div class="pd-sec"><span class="pd-sl">Outcome</span><p class="pd-txt">${d.outcome}</p></div>
+    <div class="pd-sec"><span class="pd-sl">Reflection</span><p class="pd-txt">${d.reflection}</p></div>`;
   document.getElementById('projDrawer').classList.add('open');
   document.getElementById('projOv').classList.add('on');
   document.body.style.overflow='hidden';
@@ -759,7 +816,7 @@ function closeLightbox(){const ov=document.getElementById('lightboxOv'),modal=ov
 
 
 function easeOut(t){return 1-Math.pow(2,-10*t)}
-function animStat(el,t,s,dur=1800){const st=performance.now();const ii=Number.isInteger(t);(function step(now){const p=Math.min((now-st)/dur,1);el.textContent=(ii?Math.floor(t*easeOut(p)):(t*easeOut(p)).toFixed(1))+s;if(p<1)requestAnimationFrame(step)})(st)}
+function animStat(el,t,s,dur=1800){const st=performance.now();const ii=Number.isInteger(t);(function step(now){const p=Math.min((now-st)/dur,1);const v=p>=1?t:t*easeOut(p);el.textContent=(ii?Math.floor(v):v.toFixed(1))+s;if(p<1)requestAnimationFrame(step)})(st)}
 const cObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.sv[data-t]').forEach(el=>animStat(el,parseFloat(el.dataset.t),el.dataset.s||''));cObs.disconnect()}})},{threshold:.25});
 const nb=document.querySelector('.w-stats');if(nb)cObs.observe(nb);
 
